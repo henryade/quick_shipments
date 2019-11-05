@@ -1,9 +1,20 @@
 {
   "root": true,
-  "extends": "airbnb",
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "plugins": ["react"],
   "parserOptions": {
-    "ecmaVersion": 9
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "parser": "babel-eslint",
   "env": {
@@ -30,6 +41,7 @@
     "import/no-unresolved": 1,
     "react/no-unknown-property": [2, { "ignore": ["class", "for"] }],
     "react/forbid-prop-types": 0,
+    "jsx-a11y/label-has-associated-control": "off",
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": [
       "error",
