@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const log = require('fancy-log');
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 
