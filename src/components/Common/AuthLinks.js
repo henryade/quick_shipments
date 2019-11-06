@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 
 const AuthLinks = ({ data }) => (
   <ul className="right">
-    {data.map(({ name, url }) => {
-      return (
-        <li key={name}>
-          <NavLink to={url}>{name}</NavLink>
-        </li>
-      );
-    })}
+    {data.map(({ name, url }) => (
+      <li key={name}>
+        <NavLink to={url}>{name}</NavLink>
+      </li>
+    ))}
   </ul>
 );
 

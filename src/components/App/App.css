@@ -2,3 +2,16 @@
   font-size: 12px;
   color: red;
 }
+
+.input-field .react-tel-input input[type=text], .react-tel-input input[type=tel] {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: fill;
+  border-radius: 5px 5px 0 5px;
+
+}
+
+.signup-input-field {
+  margin-top: 0.5rem;
+}
