@@ -16,12 +16,12 @@ export const SigninAction = (identifier, password) => async (dispatch) => {
   dispatch(SigninRequest());
   try {
     const { data } = await axios.post(`${REACT_APP_BASE_URL}auth/local`,
-      { identifier, password }
-    );
+      { identifier, password });
     setItems({ token: data.jwt, email: data.user.email });
     await dispatch(SigninSuccess(data.user));
   } catch (err) {
-    const { message } = err.response.data.message[0].messages[0];
+    const { message } = err.response
+      ? err.response.data.message[0].messages[0] : err;
     dispatch(SigninFailure(message));
   }
 };
