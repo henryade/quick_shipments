@@ -1,26 +1,27 @@
 import * as actionTypes from '../actionTypes';
 
 const initialState = {
-  user: {},
+  data: {
+    shipments: []
+  },
   isLoading: false,
-  error: null,
+  error: null
 };
 
-const SigninReducer = (state = initialState, action) => {
+const GetShipmentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SIGNIN_REQUEST:
+    case actionTypes.GET_SHIPMENT_REQUEST:
       return {
         ...state,
         isLoading: true
       };
-    case actionTypes.SIGNIN_SUCCESS:
+    case actionTypes.GET_SHIPMENT_SUCCESS:
       return {
         ...state,
-        user: action.data,
-        isLoading: false,
-        error: null
+        data: action.data,
+        isLoading: false
       };
-    case actionTypes.SIGNIN_FAILURE:
+    case actionTypes.GET_SHIPMENT_FAILURE:
       return {
         ...state,
         isLoading: false,
@@ -31,4 +32,4 @@ const SigninReducer = (state = initialState, action) => {
   }
 };
 
-export default SigninReducer;
+export default GetShipmentReducer;

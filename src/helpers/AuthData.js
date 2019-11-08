@@ -1,18 +1,10 @@
-const AuthorizedLinks = (initials = 'AN') => [
-  {
-    name: 'New Shipment',
-    url: '/',
-    class: '',
-  },
+import LogOut from './LogOut';
+
+const AuthorizedLinks = [
   {
     name: 'LogOut',
-    url: '/logout',
+    click: LogOut,
     class: '',
-  },
-  {
-    name: initials,
-    url: '/',
-    class: 'btn btn-floating grey lighten-3',
   }
 ];
 const UnAuthorizedLinks = [

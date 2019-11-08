@@ -21,6 +21,8 @@ class SignUp extends Component {
     password: '',
     confirmPassword: '',
     phone: '',
+    passwordHide: true,
+    conPasswordHide: true,
     errors: {
       password: '',
       confirmPassword: '',
@@ -38,6 +40,10 @@ class SignUp extends Component {
     this.setState({ errors: { other: error } });
   };
 
+  togglePasswordHide = (input) => (e) => {
+    this.setState({ [input]: !this.state[input] });
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault();
     await this.updateErrorState();
@@ -50,7 +56,6 @@ class SignUp extends Component {
       email, username, phone, password
     } = this.state;
     const {
-      history: { push },
       SignupAction: RegisterAction
     } = this.props;
     await RegisterAction({
@@ -64,7 +69,7 @@ class SignUp extends Component {
     } = this.props;
 
     if (error) this.renderError(error);
-    else if (user) push('/home');
+    else if (user) window.location = '/home';
     else this.renderError('Something Happened: Try Again');
   };
 
@@ -121,19 +126,24 @@ class SignUp extends Component {
         confirmPassword: confirmPasswordError,
         other
       },
-      phone
+      phone, passwordHide, conPasswordHide
     } = this.state;
 
     const {
       SignupReducer: { isLoading }
     } = this.props;
 
+    const spanClass = (input) => `fa fa-fw field-icon ${input ? 'fa-eye' : 'fa-eye-slash'}`;
+
+
     return (
-      <div className="row">
-        <div className="col s12 m5 pink lighten-3" />
-        <div className="col s12 m6 offset-m1">
-          <div className="container">
-            <form className="white" onSubmit={this.handleSubmit}>
+      <div className="row HomePage">
+        <div className="col s12 m5 valign-wrapper center-align l6 lighten-3 HomeImageContainer">
+          <h2 className="center-align white-text valign">Quick Delivery To Your Doorstep</h2>
+        </div>
+        <div className="col s12 m6 offset-m1 l5 offset-l1 shift-down shift-up-mobile">
+          <div className="container transperant signup-card">
+            <form onSubmit={this.handleSubmit}>
               <h4 className="grey-text text-darken-2 section">Sign Up</h4>
               <div className="input-field signup-input-field">
                 <input
@@ -142,6 +152,7 @@ class SignUp extends Component {
                   className="validate"
                   id="email"
                   required
+                  disabled={isLoading}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                 />
@@ -155,6 +166,7 @@ class SignUp extends Component {
                   id="username"
                   className="validate"
                   required
+                  disabled={isLoading}
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                 />
@@ -165,37 +177,46 @@ class SignUp extends Component {
                   value={phone}
                   onChange={this.handleOnChange('phone')}
                   onFocus={this.handleFocus}
+                  disabled={isLoading}
                 />
               </div>
               <div className="input-field signup-input-field">
                 <label htmlFor="password">Password</label>
                 <input
-                  type="password"
+                  type={passwordHide ? 'password' : 'text'}
                   name="password"
                   id="password"
                   className="validate"
+                  disabled={isLoading}
                   required
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                 />
+                <span className={spanClass(passwordHide)} onClick={this.togglePasswordHide('passwordHide')} role="presentation" onKeyDown={this.togglePasswordHide('passwordHide')} />
                 {{ passwordError }
                 && <span className="helper-text">{passwordError}</span>}
               </div>
               <div className="input-field signup-input-field">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <input
-                  type="password"
+                  type={conPasswordHide ? 'password' : 'text'}
                   name="confirmPassword"
                   id="confirmPassword"
+                  disabled={isLoading}
                   onChange={this.handleChange}
                   className="validate"
                   required
                   onFocus={this.handleFocus}
                 />
+                <span className={spanClass(conPasswordHide)} onClick={this.togglePasswordHide('conPasswordHide')} role="presentation" onKeyDown={this.togglePasswordHide('conPasswordHide')} />
                 {{ confirmPasswordError } && (
                   <span className="helper-text">{confirmPasswordError}</span>
                 )}
                 {{ other } && <span className="helper-text">{other}</span>}
+                <div className="center-align">
+Already Registered?
+                  <a href="/signin">SignIn</a>
+                </div>
               </div>
               <div className="input-field signup-input-field">
                 <button
@@ -215,7 +236,6 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  history: PropTypes.object.isRequired,
   SignupReducer: PropTypes.object.isRequired,
   SignupAction: PropTypes.func.isRequired
 };

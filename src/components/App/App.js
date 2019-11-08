@@ -6,10 +6,8 @@ import './App.css';
 
 const App = () => (
   <BrowserRouter>
-    <div className="App">
-      <Navbar />
-      <Router />
-    </div>
+    <Navbar />
+    <Router />
   </BrowserRouter>
 );
 
