@@ -4,16 +4,24 @@ import PropTypes from 'prop-types';
 
 const AuthLinks = ({ data }) => (
   <ul className="right">
-    {data.map(({ name, url }) => (
+    {data.map(({
+      name, url, click, Component
+    }) => (
       <li key={name}>
-        <NavLink to={url}>{name}</NavLink>
+        {url ? (
+          <NavLink to={url}>{name}</NavLink>
+        ) : (
+          <a aria-current="page" onClick={click} href="#">
+            {name}
+          </a>
+        )}
       </li>
     ))}
   </ul>
 );
 
 AuthLinks.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default AuthLinks;

@@ -15,7 +15,8 @@ class SignIn extends Component {
   state = {
     identifier: '',
     password: '',
-    error: ''
+    error: '',
+    passwordHide: true,
   };
 
   /**
@@ -32,19 +33,22 @@ class SignIn extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { identifier, password } = this.state;
-    const { history: { push }, SigninAction: LoginAction } = this.props;
+    const { SigninAction: LoginAction } = this.props;
     await LoginAction(identifier, password);
-    const { SigninReducer: { user, error } } = this.props;
-
+    const { SigninReducer: { error } } = this.props;
     if (error) this.renderError(error);
-    else if (user) push('/home');
-    else this.renderError('Something Happened: Try Again');
+    else window.location = '/home';
   };
 
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
+
+  togglePasswordHide = (e) => {
+    const { passwordHide } = this.state;
+    this.setState({ passwordHide: !passwordHide });
+  }
 
   handleFocus = () => {
     this.setState({ error: '' });
@@ -57,15 +61,14 @@ class SignIn extends Component {
    * @memberof SignIn
    */
   render() {
-    const { error } = this.state;
+    const { error, passwordHide } = this.state;
     const { SigninReducer: { isLoading } } = this.props;
+    const spanClass = `fa fa-fw field-icon ${passwordHide ? 'fa-eye' : 'fa-eye-slash'}`;
     return (
-      <div className="row">
-        <div className="col s12 m6 pink lighten-3" />
-        <div className="col s12 m5 offset-m1">
-          <div className="container">
+      <div className="row HomePage">
+        <div className="col s12 m6 offset-m3 l6 offset-l3 shift-down">
+          <div className="container transperant little-border shift-down middle-card">
             <form
-              className="white"
               onSubmit={this.handleSubmit}
               onFocus={this.handleFocus}
             >
@@ -75,6 +78,7 @@ class SignIn extends Component {
                   type="text"
                   name="identifier"
                   className="validate"
+                  disabled={isLoading}
                   id="identifier"
                   required
                   onChange={this.handleChange}
@@ -84,13 +88,15 @@ class SignIn extends Component {
               <div className="input-field">
                 <label htmlFor="password">Password</label>
                 <input
-                  type="password"
+                  type={passwordHide ? 'password' : 'text'}
                   name="password"
                   id="password"
                   className="validate"
+                  disabled={isLoading}
                   required
                   onChange={this.handleChange}
                 />
+                <span className={spanClass} onClick={this.togglePasswordHide} role="presentation" onKeyDown={this.togglePasswordHide} />
                 { { error } && <span className="helper-text">{error}</span>}
               </div>
               <div className="input-field">
@@ -111,7 +117,6 @@ class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-  history: PropTypes.object.isRequired,
   SigninReducer: PropTypes.object.isRequired,
   SigninAction: PropTypes.func.isRequired,
 };

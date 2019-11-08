@@ -17,7 +17,7 @@ export const SignupAction = (body) => async (dispatch) => {
   try {
     const { data } = await axios
       .post(`${REACT_APP_BASE_URL}auth/local/register`, body);
-    setItems({ token: data.jwt, email: data.user.email });
+    setItems({ token: data.jwt, id: data.user.id, name: data.user.username });
     await dispatch(SignupSuccess(data.user));
   } catch (err) {
     const { message } = err.response

@@ -10,18 +10,18 @@ const SignupReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SIGNUP_REQUEST:
       return {
-        state,
+        ...state,
         isLoading: true
       };
     case actionTypes.SIGNUP_SUCCESS:
       return {
-        state,
+        ...state,
         user: action.data,
         isLoading: false
       };
     case actionTypes.SIGNUP_FAILURE:
       return {
-        state,
+        ...state,
         isLoading: false,
         error: action.error
       };

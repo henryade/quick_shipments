@@ -15,3 +15,202 @@
 .signup-input-field {
   margin-top: 0.5rem;
 }
+
+.btn-link{
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+
+.valign-wrapper {
+  margin-top: 15rem;
+}
+
+.valign {
+  text-shadow: 1px 1px 2px #2196F3;
+}
+
+nav {
+  position: fixed;
+  z-index: 100;
+}
+
+.dashboard {
+  margin-top: 80px;
+}
+
+.field-icon {
+  float: right;
+  margin-top: -34px;
+  position: relative;
+  z-index: 2;
+}
+
+.sidenav .user-view{
+  padding-bottom: 40px;
+}
+
+.row .col.l8 {
+  margin-left: 5vw;
+}
+
+.HomePage {
+  background: url('../../../public/Optimized-P6050556.jpg');
+  background-size: cover;
+  height: max-content;
+  padding-bottom: 17rem;
+  margin-bottom: 0;
+}
+
+.header {
+  font-weight: 300;
+  word-spacing: 1;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.little-padding {
+  padding-left: 1.5%;
+}
+
+.notfound img {
+  width: 30%;
+}
+
+.nav-container{
+  width: 87%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shift-down {
+  margin-top: 5rem;
+}
+
+.shift-down-404 {
+  padding-top: 10rem;
+}
+
+
+.hambugger {
+  z-index: 200;
+  position: fixed;
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 27px;
+}
+
+.signup-card {
+  box-shadow: 1px 1px 1px red, 0em 0 .4em #2196F3;
+  padding: 0px 20px 60px 20px;
+}
+
+.transperant {
+  background-color: rgba(255,255,255,0.87);
+}
+
+.sidenav .user-view .name, .sidenav .user-view .email {
+  font-size: 20px;
+}
+
+.little-border {
+  padding: 15px 20px 60px 20px;
+  box-shadow: 1px 1px 1px red, 0em 0 .4em #2196F3;
+}
+
+.HomeImage {
+  width: 38rem;
+  margin-top: 50px;
+}
+
+select, select:active, select:focus {
+  display: block;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #F44336;
+}
+
+.card {
+  margin-top: 2rem;
+}
+
+.card .card-action {
+  padding: 10px 24px 44px 24px;
+}
+
+.card .card-content {
+  padding: 24px 24px 70px 24px;
+}
+
+.ring{
+  margin: 10rem auto;
+  width: max-content; 
+}
+
+.sidenav li a {
+  color: rgba(0,0,0,0.87);
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 32px;
+}
+
+.side-links {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+    vertical-align: middle;
+    z-index: 1;
+    transition: .3s ease-out;
+}
+
+.sidenav.sidenav-fixed {
+  margin-top: 64px;
+}
+
+
+@media only screen and (max-width : 992px) {
+  nav {
+    padding-left: 0;
+  }
+  .row .col.l8 {
+    margin-left: auto;
+  }
+  .HomeImage {
+    width: 30rem
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  .valign-wrapper {
+    margin-top: 4rem;
+  }
+  .shift-up-mobile {
+    margin-top: 0;
+  }
+}
+
+
+@media only screen and (max-width : 450px) {
+  .notfound h3 {
+    font-size: 2rem;
+  }
+  .sidenav {
+    width: 66%;
+  }
+  nav .brand-logo {
+    font-size: 1.3rem;
+    left: 45%;
+  }
+  .valign {
+    font-size: 2rem;
+  }
+}
+
