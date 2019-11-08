@@ -20,8 +20,13 @@ export const SignupAction = (body) => async (dispatch) => {
     setItems({ token: data.jwt, id: data.user.id, name: data.user.username });
     await dispatch(SignupSuccess(data.user));
   } catch (err) {
-    const { message } = err.response
-      ? err.response.data.message[0].messages[0] : err;
+    let message;
+    if (err.response) {
+      if ( typeof err.response.data.message === 'string') {
+        message = err.response.data.error;
+      } else message = err.response.data.message[0].messages[0].message;
+    } else message = err.message;
+
     dispatch(SignupFailure(message));
   }
 };
