@@ -18,7 +18,7 @@ export const GetShipmentAction = () => async (dispatch) => {
   dispatch(GetShipmentRequest());
   try {
     axios.defaults.headers.common.Authorization = `Bearer ${getItems('token')}`;
-    const { data } = await axios.get(`${REACT_APP_BASE_URL}shipments?user=16`);
+    const { data } = await axios.get(`${REACT_APP_BASE_URL}shipments?user=${getItems('id')}`);
     await dispatch(GetShipmentSuccess(data));
   } catch (err) {
     const { message } = err.response

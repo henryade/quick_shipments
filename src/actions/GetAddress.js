@@ -18,7 +18,7 @@ export const GetAddressAction = () => async (dispatch) => {
   dispatch(GetAddressRequest());
   try {
     axios.defaults.headers.common.Authorization = `Bearer ${getItems('token')}`;
-    const { data } = await axios.get(`${REACT_APP_BASE_URL}addresses?user=16`);
+    const { data } = await axios.get(`${REACT_APP_BASE_URL}addresses?user=${getItems('id')}`);
     await dispatch(GetAddressSuccess(data));
   } catch (err) {
     const { message } = err.response
