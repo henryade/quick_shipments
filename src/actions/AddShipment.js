@@ -21,60 +21,7 @@ export const AddShipmentFailure = (error) => ({ type: actionTypes.ADD_SHIPMENT_F
 export const AddShipmentAction = (body) => async (dispatch) => {
   dispatch(AddShipmentRequest());
   try {
-    const { data } = {
-      data: {
-        id: 8,
-        origin: {
-          city: 'Surulere',
-          name: 'chekwas',
-          phone: '087372593987',
-          state: 'Lagos',
-          street: '1 akin street',
-          country: 'Nigeria'
-        },
-        destination: {
-          city: 'Enugu',
-          name: 'Dennis',
-          phone: '345456765',
-          state: 'Enugu',
-          street: '12 new heaven street',
-          country: 'Nigeria'
-        },
-        courier: {
-          id: 2,
-          name: 'FedEx',
-          logo: null,
-          date_created: '2019-10-03T00:00:00.000Z',
-          last_updated: '2019-10-09T00:00:00.000Z',
-          is_active: true,
-          email: 'fedex@sendbox.ng',
-          phone: '08123243353',
-          otp: 324355,
-          created_at: '2019-10-29T12:38:44.418Z',
-          updated_at: '2019-10-29T12:39:08.002Z'
-        },
-        item: {
-          quantity: '1',
-          description: 'PS4'
-        },
-        weight: 10,
-        user: {
-          id: 16,
-          username: 'ambrosini',
-          email: 'masimoab@mail.com',
-          provider: 'local',
-          confirmed: true,
-          blocked: null,
-          role: 2,
-          phone: null,
-          created_at: '2019-11-01T04:55:58.312Z',
-          updated_at: '2019-11-01T04:55:58.323Z'
-        },
-        created_at: '2019-11-07T21:15:17.105Z',
-        updated_at: '2019-11-07T21:15:17.114Z'
-      }
-    };
-    // await axios.post(`${REACT_APP_BASE_URL}shipments/add`, body);
+    const { data } = await axios.post(`${REACT_APP_BASE_URL}shipments/add`, body);
     await dispatch(AddShipmentSuccess(data));
   } catch (err) {
     const { message } = err.response ? err.response : err;
